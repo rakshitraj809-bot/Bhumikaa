@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>💫 Best Friend Forever - Bhumika 💫</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', 'Comic Neue', cursive, sans-serif;
+            background: linear-gradient(145deg, #f9eef2 0%, #ffe0e8 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><text x="0" y="20" font-size="20">💙</text></svg>') 12 20, auto;
+        }
+
+        /* music toggle */
+        .music-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            border: none;
+            border-radius: 60px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffecf0;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            font-family: monospace;
+            transition: 0.3s;
+            animation: gentleGlow 2s infinite;
+        }
+        .music-btn:hover {
+            background: #bc7a8a;
+            transform: scale(1.07);
+        }
+        @keyframes gentleGlow {
+            0% { box-shadow: 0 0 0 0 rgba(255,140,170,0.7);}
+            70% { box-shadow: 0 0 0 10px rgba(255,140,170,0);}
+            100% { box-shadow: 0 0 0 0 rgba(255,140,170,0);}
+        }
+
+        /* pages stack */
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            padding: 2rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            background: radial-gradient(circle at 30% 20%, rgba(255,245,250,0.9), rgba(255,215,225,0.7));
+            position: relative;
+        }
+
+        /* animated background bubbles */
+        .bubble {
+            position: fixed;
+            background: rgba(255,200,220,0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatBubble 8s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes floatBubble {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+        }
+
+        .card {
+            background: rgba(255, 252, 248, 0.96);
+            backdrop-filter: blur(8px);
+            border-radius: 70px 30px 70px 30px;
+            padding: 2rem 1.8rem;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2), 0 0 0 4px #ffc0d0 inset;
+            transition: transform 0.4s ease;
+            animation: cardFloat 0.8s ease-out;
+            z-index: 2;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+        }
+        @keyframes cardFloat {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #c44569, #ff96b5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            animation: textShine 2s infinite;
+        }
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h2 {
+            font-size: 2rem;
+            color: #ad4d6c;
+            margin: 15px 0;
+        }
+        p {
+            font-size: 1.15rem;
+            line-height: 1.55;
+            margin: 15px 0;
+            color: #3b2c30;
+        }
+        .btn-group {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        button {
+            background: #f0986e;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            box-shadow: 0 5px 0 #aa5f3c;
+            font-family: inherit;
+        }
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #aa5f3c;
+        }
+        .next-btn {
+            background: #db7f9e;
+            box-shadow: 0 5px 0 #9f4c6e;
+            animation: bounceLight 1.5s infinite;
+        }
+        @keyframes bounceLight {
+            0%,100%{ transform: translateY(0);}
+            50%{ transform: translateY(-4px);}
+        }
+        .game-box {
+            background: #fff5f8;
+            border-radius: 50px;
+            padding: 1.3rem;
+            margin: 20px 0;
+            border: 2px dashed #ffb7c5;
+        }
+        .memory-counter, .hug-counter {
+            background: #ffe0e8;
+            border-radius: 100px;
+            padding: 10px 24px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.6rem;
+            margin: 12px auto;
+            color: #b13c60;
+            transition: 0.2s;
+        }
+        .floating {
+            animation: gentleFloat 3s infinite ease-in-out;
+        }
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        /* popup toast */
+        .popup-toast {
+            position: fixed;
+            bottom: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1e2f;
+            color: #ffecb3;
+            padding: 14px 30px;
+            border-radius: 80px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1100;
+            white-space: nowrap;
+            box-shadow: 0 15px 30px black;
+            border-left: 10px solid #ff96b3;
+            animation: popGlow 0.4s forwards;
+            font-family: monospace;
+        }
+        @keyframes popGlow {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.8); bottom: 20%;}
+            100% { opacity: 1; transform: translateX(-50%) scale(1); bottom: 28%;}
+        }
+        .confetti {
+            position: fixed;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 1050;
+            animation: confettiFall 3s linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        footer {
+            font-size: 0.75rem;
+            margin-top: 20px;
+            opacity: 0.6;
+        }
+        @media (max-width: 550px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 1.3rem; }
+            button { padding: 10px 20px; font-size: 1rem; }
+            .popup-toast { white-space: normal; width: 85%; text-align: center; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="music-btn" id="musicToggle">🎵 PLAY MUSIC 🎵</button>
+
+<!-- PAGE 1 - GREETING -->
+<div class="page" id="page1" style="display: flex;">
+    <div class="card floating">
+        <h1>✨ HAPPY BEST FRIEND DAY BHUMIKA!! ✨</h1>
+        <h2>💙 My Forever Bestie 💙</h2>
+        <p>⭐ Every day with you is like a celebration! ⭐<br>
+        You're the peanut butter to my jelly, the WiFi to my signal.<br>
+        Get ready for games, memories and a magical question! 🎁🌈</p>
+        <div class="game-box" style="background:#ffeef4;">
+            🌟 <strong>"Best friends: we laugh a little louder, shine a little brighter."</strong> 🌟
+        </div>
+        <button class="next-btn" onclick="nextPage(2)">👉 NEXT: MEMORIES & FUN 👈</button>
+    </div>
+</div>
+
+<!-- PAGE 2 - FEBRUARY MEMORIES + CLICKER -->
+<div class="page" id="page2" style="display: none;">
+    <div class="card">
+        <h2>📅 FEBRUARY — Where it all began 💭</h2>
+        <p>We met in <strong>February</strong>. Though we haven't known each other for decades,<br>
+        every single moment with you is etched in my heart. <strong>💙 THESE LITTLE MOMENTS MEAN THE WORLD TO ME.</strong><br>
+        ❤️ <em>Annoying you, texting you non-stop, making silly fights, and laughing together</em> ❤️ —<br>
+        That's the best part of my day, everyday!</p>
+        <div class="game-box">
+            <p>🌟 <strong>Click to treasure our beautiful memories:</strong></p>
+            <div class="memory-counter" id="memoryDisplay">💎 0 Precious Moments</div>
+            <button id="memoryBtn">✨ ADD A MEMORY ✨</button>
+            <p style="font-size:0.85rem;">Let's count how many amazing times we've shared!</p>
+        </div>
+        <button class="next-btn" onclick="nextPage(3)">➡️ NEXT: FUN GAME ⬅️</button>
+    </div>
+</div>
+
+<!-- PAGE 3 - FRIENDSHIP HIGH-FIVE METER -->
+<div class="page" id="page3" style="display: none;">
+    <div class="card">
+        <h2>🎮 BESTIE BONDING GAME 🎮</h2>
+        <p>"Show your bestie spirit — click to raise our friendship meter!"</p>
+        <div class="game-box">
+            <p>🤝 <strong>FRIENDSHIP HIGH-FIVE POWER</strong> 🤝</p>
+            <div class="hug-counter" id="highFiveValue">✋ 0 HIGH-FIVES</div>
+            <button id="highFiveBtn">🖐️ GIVE A BLAST HIGH-FIVE 🖐️</button>
+            <p>⭐ More clicks = stronger bestie energy! ⭐</p>
+        </div>
+        <button class="next-btn" onclick="nextPage(4)">💙 NEXT: THE BIG QUESTION 💙</button>
+    </div>
+</div>
+
+<!-- PAGE 4 - FOREVER QUESTION + TRICKY NO BUTTON -->
+<div class="page" id="page4" style="display: none;">
+    <div class="card">
+        <h2>💭 A Question From the Heart 💭</h2>
+        <p><strong>“I wanna be with you forever and ever, as your best friend. Through every laugh, every crazy plan, every single day. Will you be my forever partner-in-crime?”</strong><br>
+        💙 Bhumika, will you stay with me forever and ever as my best friend? 💙</p>
+        <div class="question-box" style="background: #fff0f5; border-radius: 50px; padding: 1.5rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+            <p style="font-size: 1.7rem;">💫 <strong>Will you be my forever best friend?</strong> 💫</p>
+            <div class="btn-group" id="yesNoContainer">
+                <button id="yesForeverBtn" style="background:#bc6f8c;">✅ YES, FOREVER! ✅</button>
+                <button id="noForeverBtn" style="background:#6c7a89;">❌ NO ❌</button>
+            </div>
+            <div id="responseMessage" style="margin-top: 18px; font-weight: bold; font-size: 1.3rem;"></div>
+        </div>
+        <footer>💙 Pssst... the NO button has a mischievous personality! 💙</footer>
+    </div>
+</div>
+
+<!-- PAGE 5 - CELEBRATION FOREVER BESTIES -->
+<div class="page" id="page5" style="display: none;">
+    <div class="card floating" style="background: linear-gradient(145deg, #fff5f9, #ffeef4);">
+        <h1>🎉 BEST FRIENDS FOREVER & EVER 🎉</h1>
+        <p>💙 <strong>BHUMIKA SAID YES! 💙 WE'RE BESTIES FOR A LIFETIME!</strong> 💙</p>
+        <p>Our journey is infinite — more late night talks, more goofy moments, more adventures.<br>
+        ✨ <em>"I wanna live with you forever and ever as your best friend"</em> ✨<br>
+        Thank you for being the most amazing best friend anyone could ask for! 🌈💙</p>
+        <div style="font-size:3.5rem; margin: 20px;">💙🌈🎉</div>
+        <p>🌟 Here's to our forever friendship! 🌟</p>
+        <button id="restartBtn" style="background:#d47a9a;">🔁 RELIVE THE MAGIC 🔁</button>
+    </div>
+</div>
+
+<script>
+    // ---------- CREATE BUBBLES ----------
+    function createBubbles() {
+        for(let i=0; i<20; i++) {
+            let bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            let size = Math.random() * 80 + 20;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDuration = 6 + Math.random() * 8 + 's';
+            bubble.style.animationDelay = Math.random() * 10 + 's';
+            document.body.appendChild(bubble);
+        }
+    }
+    createBubbles();
+
+    // confetti burst 
+    function burstConfetti() {
+        for(let i=0; i<50; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti');
+            const icons = ['💙', '✨', '💫', '🌸', '🌈', '🎉', '💎', '🖐️', '⭐', '🌟'];
+            conf.innerText = icons[Math.floor(Math.random() * icons.length)];
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.fontSize = (Math.random() * 24 + 18) + 'px';
+            conf.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    // page navigation - FIXED: properly showing pages
+    let currentPage = 1;
+    const pages = {
+        1: document.getElementById('page1'),
+        2: document.getElementById('page2'),
+        3: document.getElementById('page3'),
+        4: document.getElementById('page4'),
+        5: document.getElementById('page5')
+    };
+
+    function showPage(pageNum) {
+        // hide all pages
+        for(let i = 1; i <= 5; i++) {
+            if(pages[i]) pages[i].style.display = 'none';
+        }
+        // show selected page
+        if(pages[pageNum]) {
+            pages[pageNum].style.display = 'flex';
+            currentPage = pageNum;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if(pageNum === 5) {
+            burstConfetti();
+        }
+    }
+
+    window.nextPage = function(next) {
+        if(next === 2) showPage(2);
+        else if(next === 3) showPage(3);
+        else if(next === 4) { 
+            showPage(4); 
+            initPage4Interactions(); 
+        }
+        else if(next === 5) {
+            if(window.foreverAnswered === true) {
+                showPage(5);
+            } else {
+                createPopupToast("💙 First click 'YES' on the previous page, bestie! 💙");
+                showPage(4);
+                initPage4Interactions();
+            }
+        }
+    };
+
+    // ---------- MEMORY CLICKER ----------
+    let memoryCount = 0;
+    const memoryBtn = document.getElementById('memoryBtn');
+    const memoryDisplay = document.getElementById('memoryDisplay');
+    if(memoryBtn) {
+        memoryBtn.addEventListener('click', () => {
+            memoryCount++;
+            memoryDisplay.innerText = `💎 ${memoryCount} Precious Moments`;
+            memoryDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => memoryDisplay.style.transform = 'scale(1)', 200);
+            createPopupToast("✨ Another beautiful memory captured! ✨");
+        });
+    }
+
+    // ---------- HIGH-FIVE GAME ----------
+    let highFiveCount = 0;
+    const highFiveBtn = document.getElementById('highFiveBtn');
+    const highFiveValue = document.getElementById('highFiveValue');
+    if(highFiveBtn) {
+        highFiveBtn.addEventListener('click', () => {
+            highFiveCount++;
+            highFiveValue.innerText = `✋ ${highFiveCount} HIGH-FIVES`;
+            highFiveValue.style.transform = "rotate(5deg) scale(1.1)";
+            setTimeout(() => highFiveValue.style.transform = "rotate(0deg) scale(1)", 180);
+            createPopupToast("🖐️ BESTIE POWER UP! 🖐️");
+        });
+    }
+
+    // ---------- TRICKY NO BUTTON LOGIC ----------
+    let noClickAttempts = 0;
+    window.foreverAnswered = false;
+    let noBtn = document.getElementById('noForeverBtn');
+    let yesBtn = document.getElementById('yesForeverBtn');
+    const responseDiv = document.getElementById('responseMessage');
+
+    function createPopupToast(msg) {
+        const existing = document.querySelector('.popup-toast');
+        if(existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'popup-toast';
+        toast.innerText = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+
+    function handleNoClick(e) {
+        if(window.foreverAnswered) return;
+        noClickAttempts++;
+        const messages = [
+            "🤔 Think again? Our friendship is legendary! Click YES 🤗",
+            "😜 NO is not an option! We're meant to be best friends forever 💙",
+            "💙 Seriously? Look how awesome we are together! Try again 💙",
+            "🌟 'NO' button is just teasing you. Click YES! 🌟",
+            "🎈 One more try? NO keeps running away haha! Click YES 🎈",
+            "😎 Every time you click NO, our bond gets stronger — so just say YES! 😎",
+            "✨ Come on bestie, you know we are forever squad ✨",
+            "💫 'NO' button is broken... only YES works! 💫"
+        ];
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        createPopupToast(randomMsg);
+        if(responseDiv) responseDiv.innerHTML = `<span style="color:#c44569;">😄 "${randomMsg}" 😄</span>`;
+        setTimeout(() => { if(!window.foreverAnswered && responseDiv) responseDiv.innerHTML = ''; }, 2000);
+        
+        // Move the NO button around playfully!
+        const currentNo = document.getElementById('noForeverBtn');
+        if(currentNo) {
+            const randomX = (Math.random() - 0.5) * 40;
+            const randomY = (Math.random() - 0.5) * 35;
+            currentNo.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random()*8-4}deg)`;
+            setTimeout(() => {
+                const freshNo = document.getElementById('noForeverBtn');
+                if(freshNo && !window.foreverAnswered) freshNo.style.transform = 'translate(0px,0px) rotate(0deg)';
+            }, 200);
+            const texts = ["❌ NO?", "🚫 THINK", "💙 YES", "😜 NOPE", "✨ TRY", "💫 CLICK", "⭐ SAY YES"];
+            currentNo.innerText = texts[Math.floor(Math.random() * texts.length)];
+            setTimeout(() => { 
+                const freshNo2 = document.getElementById('noForeverBtn');
+                if(freshNo2 && !window.foreverAnswered) freshNo2.innerText = "❌ NO ❌"; 
+            }, 1000);
+        }
+    }
+
+    function rebindYesForever() {
+        const freshYes = document.getElementById('yesForeverBtn');
+        if(freshYes) {
+            const newYes = freshYes.cloneNode(true);
+            if(freshYes.parentNode) freshYes.parentNode.replaceChild(newYes, freshYes);
+            newYes.addEventListener('click', () => {
+                if(window.foreverAnswered) return;
+                window.foreverAnswered = true;
+                if(responseDiv) responseDiv.innerHTML = '<span style="color:#2a7f5a; font-size:1.6rem;">💙 YES! Best Friends Forever and Ever! 💙</span>';
+                createPopupToast("💙 YAY! Bhumika said YES! Forever besties! 💙");
+                burstConfetti();
+                setTimeout(() => { showPage(5); }, 1500);
+            });
+        }
+    }
+
+    function bindNoButtonTrickery() {
+        const freshNo = document.getElementById('noForeverBtn');
+        if(freshNo) {
+            const newNo = freshNo.cloneNode(true);
+            if(freshNo.parentNode) freshNo.parentNode.replaceChild(newNo, freshNo);
+            newNo.addEventListener('click', handleNoClick);
+            newNo.style.transition = "0.07s linear";
+        }
+    }
+
+    function initPage4Interactions() {
+        rebindYesForever();
+        bindNoButtonTrickery();
+    }
+
+    // restart whole experience
+    const restartBtn = document.getElementById('restartBtn');
+    if(restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            memoryCount = 0;
+            if(memoryDisplay) memoryDisplay.innerText = `💎 0 Precious Moments`;
+            highFiveCount = 0;
+            if(highFiveValue) highFiveValue.innerText = `✋ 0 HIGH-FIVES`;
+            window.foreverAnswered = false;
+            if(responseDiv) responseDiv.innerHTML = '';
+            showPage(1);
+            setTimeout(() => {
+                initPage4Interactions();
+            }, 100);
+        });
+    }
+
+    // ------- MUSIC WITH RELIABLE SOURCE (working audio) -------
+    const music = new Audio();
+    // Using a reliable, CORS-friendly instrumental track that works everywhere
+    music.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3";
+    music.loop = true;
+    music.volume = 0.5;
+    let musicPlaying = false;
+    const musicToggleBtn = document.getElementById('musicToggle');
+    
+    function toggleMusic() {
+        if(musicPlaying) {
+            music.pause();
+            musicPlaying = false;
+            musicToggleBtn.innerHTML = "🎵 PLAY MUSIC 🎵";
+        } else {
+            music.play().then(() => {
+                musicPlaying = true;
+                musicToggleBtn.innerHTML = "🎵 PAUSE MUSIC 🎵";
+            }).catch((err) => {
+                console.log("Auto-play blocked:", err);
+                createPopupToast("🎶 Click anywhere to enable music!");
+                // fallback: try to play on next user click
+                const playOnClick = function() {
+                    music.play().then(() => {
+                        musicPlaying = true;
+                        musicToggleBtn.innerHTML = "🎵 PAUSE MUSIC 🎵";
+                    }).catch(()=>{});
+                    document.body.removeEventListener('click', playOnClick);
+                };
+                document.body.addEventListener('click', playOnClick);
+            });
+        }
+    }
+    
+    musicToggleBtn.addEventListener('click', toggleMusic);
+    
+    // Try to autoplay on page load (browsers may block, but we try)
+    setTimeout(() => {
+        music.play().then(() => {
+            musicPlaying = true;
+            musicToggleBtn.innerHTML = "🎵 PAUSE MUSIC 🎵";
+        }).catch(() => {
+            // user must click the music button
+            console.log("Autoplay prevented, user must interact");
+        });
+    }, 500);
+
+    // Floating hearts animation
+    setInterval(() => {
+        if(Math.random() > 0.8) {
+            let heartSpan = document.createElement('div');
+            heartSpan.innerHTML = '💙';
+            heartSpan.style.position = 'fixed';
+            heartSpan.style.left = Math.random() * 100 + '%';
+            heartSpan.style.bottom = '-20px';
+            heartSpan.style.fontSize = (Math.random() * 24 + 16) + 'px';
+            heartSpan.style.opacity = '0.8';
+            heartSpan.style.pointerEvents = 'none';
+            heartSpan.style.zIndex = '999';
+            heartSpan.style.animation = 'floatHeart 4s forwards';
+            document.body.appendChild(heartSpan);
+            setTimeout(() => heartSpan.remove(), 4000);
+        }
+    }, 2000);
+    
+    const styleHeartAnim = document.createElement('style');
+    styleHeartAnim.textContent = `@keyframes floatHeart { 0% { transform: translateY(0) rotate(0deg); opacity: 0.8; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }`;
+    document.head.appendChild(styleHeartAnim);
+    
+    // Initialize page 4 interactions just in case
+    initPage4Interactions();
+    
+    console.log("💙 Ultimate Bestie Experience Loaded for Bhumika! Pages and Music working! 💙");
+</script>
+</body>
+</html>
